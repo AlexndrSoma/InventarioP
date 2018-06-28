@@ -5,10 +5,14 @@
  */
 package inventario;
 
+import vista.Consulta;
+
 /**
  *
  * @author alex
  */
 public class Inventario {
-    
+    public static void main(String[] args) {
+        new Consulta().setVisible(true);
+    }
 }

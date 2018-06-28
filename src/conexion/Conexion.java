@@ -5,12 +5,10 @@
  */
 package conexion;
 
-import com.sun.istack.internal.logging.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import sun.util.logging.PlatformLogger;
 
 /**
  *
@@ -42,8 +40,9 @@ public class Conexion {
         try{
             Class.forName(this.driver);
             cnx=(Connection) DriverManager.getConnection(this.url,this.user,this.pass);
-        } catch(ClassNotFoundException | SQLException ex){
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

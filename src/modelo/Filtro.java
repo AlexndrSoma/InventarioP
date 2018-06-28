@@ -10,27 +10,81 @@ package modelo;
  * @author alex
  */
 public class Filtro {
-    
+
     private int id;
     private String codigo;
     private String marca;
     private int stock;
     private boolean existencia;
-    
-    public Filtro(){
-        
+
+    public Filtro() {
+
     }
-    
-    public Filtro(String codigo, String marca, int stock, boolean existencia){
+
+    public Filtro(int id, String codigo, String marca, int stock, boolean existencia) {
+        this.id=id;
         this.codigo=codigo;
-        this.marca=marca;
-        this.stock=stock;
-        this.existencia=existencia;
+        this.marca = marca;
+        this.stock = stock;
+        this.existencia = existencia;
     }
-    
-    public Filtro(String marca, int stock, boolean existencia){
-        this.marca=marca;
-        this.stock=stock;
-        this.existencia=existencia;
+
+    public Filtro(String codigo, String marca, int stock, boolean existencia) {
+        this.codigo = codigo;
+        this.marca = marca;
+        this.stock = stock;
+        this.existencia = existencia;
     }
+
+    public Filtro(String marca, int stock, boolean existencia) {
+        this.marca = marca;
+        this.stock = stock;
+        this.existencia = existencia;
+    }
+
+    public Filtro(int aInt, String string, String string0, String string1, boolean aBoolean) {
+
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public boolean isExistencia() {
+        return existencia;
+    }
+
+    public void setExistencia(boolean existencia) {
+        this.existencia = existencia;
+    }
+
 }
