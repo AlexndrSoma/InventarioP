@@ -28,6 +28,7 @@ public class Filtro {
         this.numInscripcion = numInscripcion;
         this.nombre = nombre;
         this.propietario = propietario;
+        this.edad=edad;
         this.raza = raza;
         this.estado = estado;
 
@@ -37,6 +38,7 @@ public class Filtro {
         this.numInscripcion = numInscripcion;
         this.nombre = nombre;
         this.propietario = propietario;
+        this.edad=edad;
         this.raza = raza;
         this.estado = estado;
     }
@@ -44,6 +46,7 @@ public class Filtro {
     public Filtro(String nombre, String propietario, String edad, String raza, boolean estado) {
         this.nombre = nombre;
         this.propietario = propietario;
+        this.edad=edad;
         this.raza = raza;
         this.estado = estado;
     }
@@ -97,6 +100,11 @@ public class Filtro {
 
     public boolean isEstado() {
         return estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Filtro{" + "id=" + id + ", numInscripcion=" + numInscripcion + ", nombre=" + nombre + ", propietario=" + propietario + ", edad=" + edad + ", raza=" + raza + ", estado=" + estado + '}';
     }
 
     public void setEstado(boolean estado) {

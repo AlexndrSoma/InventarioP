@@ -88,14 +88,16 @@ public class Consulta extends JFrame {
         lblRaza = new JLabel("Raza");
         lblEstado = new JLabel("Estado");
         lblNumInscripcion.setBounds(10, 10, ANCHOC, ALTOC);
-        lblNombre.setBounds(10, 60, ANCHOC, ALTOC);
-        lblPropietario.setBounds(10, 100, ANCHOC, ALTOC);
-        lblEstado.setBounds(10, 140, ANCHOC, ALTOC);
+        lblRaza.setBounds(10, 60, ANCHOC, ALTOC);
+        lblNombre.setBounds(10, 110, ANCHOC, ALTOC);
+        lblPropietario.setBounds(10, 160, ANCHOC, ALTOC);
+        lblEdad.setBounds(10, 200, ANCHOC, ALTOC);
+        lblEstado.setBounds(10, 250, ANCHOC, ALTOC);
 
     }
 
     public final void formulario() {
-        
+
         numInscripcion = new JTextField();
         raza = new JComboBox();
         nombre = new JTextField();
@@ -119,22 +121,22 @@ public class Consulta extends JFrame {
         estado = new ButtonGroup();
         estado.add(si);
         estado.add(no);
-        
-        numInscripcion.setBounds(140,10,ANCHOC,ALTOC);
-        raza.setBounds(140,60,ANCHOC,ALTOC);
-        nombre.setBounds(140,100,ANCHOC,ALTOC);
-        propietario.setBounds(140,160,ANCHOC,ALTOC);
-        edad.setBounds(140,200,ANCHOC,ALTOC);
-        si.setBounds(140,140,50,ALTOC);
-        no.setBounds(210,140,50,ALTOC);
-        
-        buscar.setBounds(300,10,ANCHOC,ALTOC);
-        insertar.setBounds(10,210,ANCHOC,ALTOC);
-        actualizar.setBounds(150,210,ANCHOC,ALTOC);
-        eliminar.setBounds(300,210,ANCHOC,ALTOC);
-        limpiar.setBounds(450,210,ANCHOC,ALTOC);
-        resultados=new JTable();
-        table.setBounds(10,250,500,200);
+
+        numInscripcion.setBounds(140, 10, ANCHOC, ALTOC);
+        raza.setBounds(140, 60, ANCHOC, ALTOC);
+        nombre.setBounds(140, 110, ANCHOC, ALTOC);
+        propietario.setBounds(140, 160, ANCHOC, ALTOC);
+        edad.setBounds(140, 200, ANCHOC, ALTOC);
+        si.setBounds(140, 250, 50, ALTOC);
+        no.setBounds(210, 250, 50, ALTOC);
+
+        buscar.setBounds(300, 10, ANCHOC, ALTOC);
+        insertar.setBounds(10, 300, ANCHOC, ALTOC);
+        actualizar.setBounds(150, 300, ANCHOC, ALTOC);
+        eliminar.setBounds(300, 300, ANCHOC, ALTOC);
+        limpiar.setBounds(450, 300, ANCHOC, ALTOC);
+        resultados = new JTable();
+        table.setBounds(10, 360, 500, 200);
         table.add(new JScrollPane(resultados));
     }
 
@@ -152,6 +154,11 @@ public class Consulta extends JFrame {
                     case 2:
                         return String.class;
 
+                    case 3:
+                        return String.class;
+                    case 4:
+                        return String.class;
+
                     default:
                         return Boolean.class;
 
@@ -162,6 +169,7 @@ public class Consulta extends JFrame {
         tm.addColumn("No Inscripcion");
         tm.addColumn("Nombre");
         tm.addColumn("Propietario");
+        tm.addColumn("Edad");
         tm.addColumn("Raza");
         tm.addColumn("Estado");
 
@@ -169,7 +177,7 @@ public class Consulta extends JFrame {
         ArrayList<Filtro> filtros = fd.readAll();
 
         for (Filtro fi : filtros) {
-            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(), fi.getEdad(),fi.getRaza(), fi.isEstado()});
+            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(), fi.getEdad(), fi.getRaza(), fi.isEstado()});
         }
 
         resultados.setModel(tm);
@@ -181,7 +189,7 @@ public class Consulta extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(numInscripcion.getText(), nombre.getText(), propietario.getText(), edad.getText(), raza.getSelectedItem().toString(), true);
+                Filtro f = new Filtro(numInscripcion.getText(), nombre.getText(), propietario.getText(), edad.getText(), raza.getSelectedItem().toString(), si.isSelected());
 
                 if (no.isSelected()) {
                     f.setEstado(false);
@@ -204,9 +212,8 @@ public class Consulta extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent e) {
 
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(numInscripcion.getText(), nombre.getText(), propietario.getText(), edad.getText(), raza.getSelectedItem().toString(),true);
-         
-                       
+                Filtro f = new Filtro(numInscripcion.getText(), nombre.getText(), propietario.getText(), edad.getText(), raza.getSelectedItem().toString(), si.isSelected());
+
                 if (no.isSelected()) {
                     f.setEstado(false);
                 }
@@ -240,33 +247,20 @@ public class Consulta extends JFrame {
 
         });
 
-        eliminar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-
-                FiltroDao fd = new FiltroDao();
-                if (fd.delete(numInscripcion.getText())) {
-                    JOptionPane.showMessageDialog(null, "FIltro eliminado");
-                    limpiarCampos();
-                    llenarTabla();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de eliminar el filtro");
-                }
-            }
-
-        });
+       
         buscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
 
                 FiltroDao fd = new FiltroDao();
                 Filtro f = fd.read(numInscripcion.getText());
-                if (f == null) {
+                System.out.println(f);
+              if (f == null) {
                     JOptionPane.showMessageDialog(null, "El filtto buscado no se ha encontrado");
                 } else {
                     numInscripcion.setText(f.getNumInscripcion());
                     raza.setSelectedItem(f.getRaza());
-                   /* estado.setText(Integer.toString(f.getStock()));*/
+                    nombre.setText(f.getNombre());
 
                     if (f.isEstado()) {
                         si.setSelected(true);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author alex
+ * @author alex  CRUD
  */
 public interface metodos<Generic> {
 

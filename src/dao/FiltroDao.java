@@ -23,8 +23,8 @@ import modelo.Filtro;
  */
 public class FiltroDao implements metodos<Filtro> {
 
-    private static final String SQL_INSERT = "INSERT INTO mascotas (numInscripcion,nombre,propietario,raza,estado) VALUES (?,?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE mascotas SET nombre = ?,propietario = ?, raza = ?, estado=? WHERE numInscripcion=?";
+    private static final String SQL_INSERT = "INSERT INTO mascotas (numInscripcion,nombre,propietario,edad,raza,estado) VALUES (?,?,?,?,?,?)";
+    private static final String SQL_UPDATE = "UPDATE mascotas SET nombre = ?,propietario = ?, edad=?, raza = ?, estado=? WHERE numInscripcion=?";
     private static final String SQL_DELETE = "DELETE FROM mascotas WHERE numInscripcion=?";
     private static final String SQL_READ = "SELECT * FROM mascotas WHERE numInscripcion=?";
     private static final String SQL_READALL = "SELECT * FROM mascotas";
@@ -41,8 +41,9 @@ public class FiltroDao implements metodos<Filtro> {
             ps.setString(1, g.getNumInscripcion());
             ps.setString(2, g.getNombre());
             ps.setString(3, g.getPropietario());
-            ps.setString(4, g.getRaza());
-            ps.setBoolean(5, true);
+            ps.setInt(4,Integer.parseInt(g.getEdad()));
+            ps.setString(5, g.getRaza());
+            ps.setBoolean(6, g.isEstado());
             if (ps.executeUpdate() > 0) {
                 return true;
             }
@@ -74,7 +75,7 @@ public class FiltroDao implements metodos<Filtro> {
         }
         return estado;
     }
-
+//UPDATE mascotas SET nombre = ?,propietario = ?, edad=?, raza = ?, estado=? WHERE numInscripcion=?
             @Override
             public boolean update (Filtro c) {
                 PreparedStatement ps;
@@ -83,9 +84,10 @@ public class FiltroDao implements metodos<Filtro> {
                     ps = con.getCnx().prepareStatement(SQL_UPDATE);
                     ps.setString(1, c.getNombre());
                     ps.setString(2, c.getPropietario());
-                    ps.setString(3, c.getRaza());
-                    ps.setBoolean(4, c.isEstado());
-                    ps.setString(4, c.getNumInscripcion());
+                    ps.setInt(3, Integer.parseInt(c.getEdad()));
+                    ps.setString(4, c.getRaza());
+                    ps.setBoolean(5, c.isEstado());
+                    ps.setString(6, c.getNumInscripcion());
                         if (ps.executeUpdate() > 0) {
                         return true;
                     }
