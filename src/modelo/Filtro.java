@@ -12,40 +12,48 @@ package modelo;
 public class Filtro {
 
     private int id;
-    private String codigo;
-    private String marca;
-    private int stock;
-    private boolean existencia;
+    private String numInscripcion;
+    private String nombre;
+    private String propietario;
+    private String edad;
+    private String raza;
+    private boolean estado;
 
     public Filtro() {
 
     }
 
-    public Filtro(int id, String codigo, String marca, int stock, boolean existencia) {
-        this.id=id;
-        this.codigo=codigo;
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
+    public Filtro(int id, String numInscripcion, String nombre, String propietario, String edad, String raza, boolean estado) {
+        this.id = id;
+        this.numInscripcion = numInscripcion;
+        this.nombre = nombre;
+        this.propietario = propietario;
+        this.raza = raza;
+        this.estado = estado;
+
     }
 
-    public Filtro(String codigo, String marca, int stock, boolean existencia) {
-        this.codigo = codigo;
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
+    public Filtro(String numInscripcion, String nombre, String propietario,String edad, String raza, boolean estado) {
+        this.numInscripcion = numInscripcion;
+        this.nombre = nombre;
+        this.propietario = propietario;
+        this.raza = raza;
+        this.estado = estado;
     }
 
-    public Filtro(String marca, int stock, boolean existencia) {
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
+    public Filtro(String nombre, String propietario, String edad, String raza, boolean estado) {
+        this.nombre = nombre;
+        this.propietario = propietario;
+        this.raza = raza;
+        this.estado = estado;
     }
-
-    public Filtro(int aInt, String string, String string0, String string1, boolean aBoolean) {
-
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /*
+    public Filtro(String propietario, String raza, boolean estado) {
+        this.propietario = propietario;
+        this.raza = raza;
+        this.estado = estado;
     }
+    */
 
     public int getId() {
         return id;
@@ -55,36 +63,56 @@ public class Filtro {
         this.id = id;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getNumInscripcion() {
+        return numInscripcion;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setNumInscripcion(String numInscripcion) {
+        this.numInscripcion = numInscripcion;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public int getStock() {
-        return stock;
+    public String getPropietario() {
+        return propietario;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setPropietario(String propietario) {
+        this.propietario = propietario;
     }
 
-    public boolean isExistencia() {
-        return existencia;
+    public String getRaza() {
+        return raza;
     }
 
-    public void setExistencia(boolean existencia) {
-        this.existencia = existencia;
+    public void setRaza(String raza) {
+        this.raza = raza;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
+    
+    
 }
+    
+
+   
